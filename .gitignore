@@ -2,6 +2,9 @@ src/*.exe
 src/litecoin
 src/litecoind
 src/test_litecoin
+src/mendeleycoin
+src/mendeleycoind
+src/test_mendeleycoin
 .*.swp
 *.*~*
 *.bak
@@ -10,16 +13,18 @@ src/test_litecoin
 *.o
 *.patch
 .litecoin
+.mendeleycoin
 
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
 litecoin-qt
-Litecoin-Qt.app
+mendeleycoin-qt
+Mendeleycoin-Qt.app
 
 # Unit-tests
 Makefile.test
-litecoin-qt_test
+mendeleycoin-qt_test
 
 # Resources cpp
 qrc_*.cpp
