@@ -945,7 +945,7 @@ int CMerkleTx::GetBlocksToMaturity() const
 {
     if (!IsCoinBase())
         return 0;
-    return max(0, (COINBASE_MATURITY+20) - GetDepthInMainChain());
+    return max(0, (COINBASE_MATURITY+10) - GetDepthInMainChain());
 }
 
 
@@ -1087,16 +1087,16 @@ uint256 static GetOrphanRoot(const CBlockHeader* pblock)
 
 int64 static GetBlockValue(int nHeight, int64 nFees)
 {
-    int64 nSubsidy = 50 * COIN;
+    int64 nSubsidy = 5 * COIN;
 
     // Subsidy is cut in half every 840000 blocks, which will occur approximately every 4 years
-    nSubsidy >>= (nHeight / 840000); // Mendeleycoin: 840k blocks in ~4 years
+    nSubsidy >>= (nHeight / 420000); // Mendeleycoin: 840k blocks in ~4 years
 
     return nSubsidy + nFees;
 }
 
-static const int64 nTargetTimespan = 3.5 * 24 * 60 * 60; // Mendeleycoin: 3.5 days
-static const int64 nTargetSpacing = 2.5 * 60; // Mendeleycoin: 2.5 minutes
+static const int64 nTargetTimespan = 2 * 24 * 60 * 60; // Mendeleycoin: 2 days
+static const int64 nTargetSpacing =  60; // Mendeleycoin: 1 minute
 static const int64 nInterval = nTargetTimespan / nTargetSpacing;
 
 //
