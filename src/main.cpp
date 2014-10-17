@@ -35,7 +35,7 @@ CTxMemPool mempool;
 unsigned int nTransactionsUpdated = 0;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
-uint256 hashGenesisBlock("0x2b28d451a06225c777ac18584d1ae184aea1a26b3f705aff4538d76150e3a2c0"); //2b28d451a06225c777ac18584d1ae184aea1a26b3f705aff4538d76150e3a2c0
+uint256 hashGenesisBlock("0xe30018761bf1d82069e376945c4184ddd9c37d4a983cc8326a68cf9a7ccf24e6"); //2b28d451a06225c777ac18584d1ae184aea1a26b3f705aff4538d76150e3a2c0
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // Mendeleycoin: starting difficulty is 1 / 2^12
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
@@ -588,7 +588,8 @@ bool CTransaction::CheckTransaction(CValidationState &state) const
 
     if (IsCoinBase())
     {
-        if (vin[0].scriptSig.size() < 2 || vin[0].scriptSig.size() > 100)
+      printf("size: %d\n", vin[0].scriptSig.size());
+        if (vin[0].scriptSig.size() < 2 || vin[0].scriptSig.size() > 150)
             return state.DoS(100, error("CTransaction::CheckTransaction() : coinbase script size"));
     }
     else
@@ -2746,7 +2747,7 @@ bool LoadBlockIndex()
         pchMessageStart[1] = 0xc1;
         pchMessageStart[2] = 0xb7;
         pchMessageStart[3] = 0xdc;
-        hashGenesisBlock = uint256("0xf5ae71e26c74beacc88382716aced69cddf3dffff24f384e1808905e0188f68f");
+        hashGenesisBlock = uint256("0xe30018761bf1d82069e376945c4184ddd9c37d4a983cc8326a68cf9a7ccf24e6"); //2b28d451a06225c777ac18584d1ae184aea1a26b3f705aff4538d76150e3a2c0
     }
 
     //
@@ -2793,12 +2794,12 @@ bool InitBlockIndex() {
         block.nVersion = 1;
         block.nTime    = 1413546758;
         block.nBits    = 0x1e0ffff0;
-        block.nNonce   = 2084524493;
+        block.nNonce   = 386296690;
 
         if (fTestNet)
         {
             block.nTime    = 1413546758;
-            block.nNonce   = 385270584;
+            block.nNonce   = 386296690;
         }
 
         //// debug print
@@ -2807,6 +2808,8 @@ bool InitBlockIndex() {
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
         assert(block.hashMerkleRoot == uint256("0xd49c9d6bacd3ae6b42ee93a474102e2f50564f8c4641aa2da2d96452d9b1a0d3"));
+	
+	
         block.print();
         assert(hash == hashGenesisBlock);
 
